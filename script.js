@@ -1,33 +1,44 @@
+// data from the file p5.Table
 let data;
+// all elements
 let els = [];
+// our normalizer
 let normalizer;
+// train and test data
 let train;
 let test;
 
-// classifier
+// classifiers
 let knn;
 let bayes;
 
 function preload() {
+    // load the csv file (dataset)
     data = loadTable('data/classification.csv');
 }
 
+
 function setup() {
+    // transform the data into form used by classifiers
     els = DataProcessing.tableDataToEls(data);
-    let trainTest = DataProcessing.trainTestSplit(els);
+    // 25& testing data, 75% training data
+    let trainTest = DataProcessing.trainTestSplit(els, 0.75);
     train = trainTest.train;
     test = trainTest.test;
-    // visualize them
+    // visualize datapoints
     createCanvas(600, 600);
     background(40);
+    // normalizer (trained on all datapoints)
     normalizer = new Normalizer(els);
     for(let i of train) {
         let normalized = normalizer.normalize(i.x);
+        // values between width and height
         let scaled = DataProcessing.scale(normalized, [width, height])
         if(i.y == 0)
             fill(255, 0, 0);
         else
             fill(0, 255, 0);
+        // draw the point
         ellipse(scaled[0], scaled[1], 5, 5);
     }
 
@@ -41,6 +52,7 @@ function setup() {
         features: ['age', 'interest'],
         training_data: []
     }
+    // transform data into readable form
     for(let i of train) {
         let obj = 
         bayesData.training_data.push({
