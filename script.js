@@ -1,3 +1,6 @@
+// KNN and Naive Bayers Classifiers Test s
+// Mitterdorfer, 2020
+
 // data from the file p5.Table
 let data;
 // all elements
