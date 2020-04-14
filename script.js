@@ -1,4 +1,4 @@
-// KNN and Naive Bayers Classifiers Test s
+// KNN and Naive Bayers Classifiers Test 
 // Mitterdorfer, 2020
 
 // data from the file p5.Table
